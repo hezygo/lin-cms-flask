@@ -28,7 +28,7 @@ class AppVersion(Base):
     AppVersion = Column('Version', Unicode(30))
     AppOS = Column('OS', Unicode(30), nullable=False)
     _AppMarket = Column('AppMarket', Unicode(50))
-    AppPublishTime = Column('PublishTime', DATETIME2(7))
+    AppPublishTime = Column('PublishTime', DATETIME2(0))
     AppDescription = Column('Description', Unicode())
     AppEnabled = Column('Enabled', BIT(), nullable=False,
                         server_default='true')
