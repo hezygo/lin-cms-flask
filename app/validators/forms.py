@@ -160,3 +160,44 @@ class CreateOrUpdateBookForm(Form):
     author = StringField(validators=[DataRequired(message='必须传入图书作者')])
     summary = StringField(validators=[DataRequired(message='必须传入图书综述')])
     image = StringField(validators=[DataRequired(message='必须传入图书插图')])
+
+
+class CreateArticleForm(Form):
+    Author=StringField(validators=[DataRequired(message='必须传入作者')])
+    Title=StringField(validators=[DataRequired(message='必须传入标题')])
+    ActicleSource=StringField(validators=[DataRequired(message='必须传入文章来源')])
+    ArticleSummary=StringField(validators=[DataRequired(message='必须传入文章概要')])
+    ActicleTarget=StringField(validators=[DataRequired(message='必须传入文章标签')])
+    # TumorTypes=StringField(validators=[DataRequired(message='必须传入肿瘤裂类型')])
+    ActicleContent=StringField(validators=[DataRequired(message='必须传入文章内容')])
+    # PublishDate=DateTimeField(validators=[DataRequired(message='必须传入时间')])
+
+class PublishArticle(Form):
+    IsOnline=IntegerField(validators=[DataRequired('请提供发布或下线的代码')])
+
+class ChangeActicleColumn(Form):
+    ActicleColumn=StringField(validators=[DataRequired('请提供文章栏目')])
+
+class CreateAppInfo(Form):
+    AppName=StringField(validators=[DataRequired('app包名称是必须的')])
+    AppOS=StringField(validators=[Regexp(r'iOS|Android|安卓|苹果', message='请输入Android、安卓、iOS、苹果 其中之一')])
+    AppMarket=StringField(validators=[Regexp(r'^[\u4E00-\u9FA5A-Za-z]+$', message='请输入正确商店名称[`仅支持中英文`]')]) 
+    AppDescription=StringField(validators=[DataRequired('请输入app描述')])
+    # AppEnabled=StringField(validators=[DataRequired('是否上线是必须的')])
+    AppPackageUrl=StringField(validators=[Regexp(r'[a-zA-z]+://[^\s]*',message='请输入app的Url地址')])
+    #用小写v开头
+    AppVersion =StringField(validators=[Regexp(r'^v[\d\.]+\d$', message='请输入正确版本号。例如:v1.0.0')])
+
+class UpdateAppInfo(Form):
+    AppName=StringField(validators=[DataRequired('app包名称是必须的')])
+    AppOS=StringField(validators=[Regexp(r'iOS|Android|安卓|苹果', message='请输入Android、安卓、iOS、苹果 其中之一')])
+    AppMarket=StringField(validators=[Regexp(r'^[\u4E00-\u9FA5A-Za-z]+$', message='请输入正确商店名称[`仅支持中英文`]')]) 
+    AppDescription=StringField(validators=[DataRequired('请输入app描述')])
+    AppEnabled=StringField(validators=[Regexp(r'0|1|False|True|true|false',message='请输入0、1、False、True、true、false')])
+    AppPackageUrl=StringField(validators=[Regexp(r'[a-zA-z]+://[^\s]*',message='请输入app的Url地址')])
+    #用小写v开头
+    AppVersion =StringField(validators=[Regexp(r'^v[\d\.]+\d$', message='请输入正确版本号。例如:v1.0.0')])
+
+class SearchAppInfo(Form):
+    Model=StringField(validators=[DataRequired('查询的模式是必须的')])
+    KeyWord=StringField(validators=[DataRequired('查询的关键词是必须的')])
