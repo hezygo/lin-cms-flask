@@ -12,7 +12,7 @@ from sqlalchemy.dialects.mssql import BIT, DATETIME2
 from app.libs.error_code import AppinfoNotFound, AppinfoHasExists
 from flask_jwt_extended import get_current_user
 from datetime import datetime
-
+import re 
 
 class AppVersion(Base):
     """ 
@@ -63,7 +63,7 @@ class AppVersion(Base):
     def PublishTime(self):
         if self.AppPublishTime is None:
             return None
-        return self.AppPublishTime
+        return re.sub(r'\.\d+','',self.AppPublishTime)
 
     @property
     def AppMarket(self):

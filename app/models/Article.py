@@ -11,7 +11,7 @@ from lin.interface import InfoCrud as Base
 from sqlalchemy import Column, Integer, Unicode, BigInteger, DECIMAL, String, DateTime
 from sqlalchemy.dialects.mssql import BIT, NTEXT
 from datetime import datetime
-
+import re
 
 class ArticleLibrary(Base):
     """
@@ -82,7 +82,7 @@ class ArticleLibrary(Base):
     def publish_date(self):
         if self.PublishDate is None:
             return None
-        return int(round(self._create_time.timestamp() * 1000))
+        return re.sub(r'\.\d+','',self.PublishDate)
 
     @property
     def author(self):
